@@ -1,6 +1,7 @@
 #include "Partition.h"
 
 #include <algorithm>
+#include <cmath>
 
 Partition::Partition(void) : members(std::vector<Point*>(0))
 {
