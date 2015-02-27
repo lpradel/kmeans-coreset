@@ -140,8 +140,6 @@ void Coreset::calculateCoreset(int c, int maxDepthT, int d, double costFactorF)
 {
     calculateInitialPartitions(c);
 
-    std::cout << "Initial partitions: " << partitions.size() << std::endl;
-
     calculatePartitions(maxDepthT, d, costFactorF);
 
     // Take centers of final partitions as coreset
@@ -150,6 +148,8 @@ void Coreset::calculateCoreset(int c, int maxDepthT, int d, double costFactorF)
         Point* coresetPoint = coresetPartitions[i]->center;
         coreset.push_back(coresetPoint);
     }
+
+    std::cout << "Coreset size: " << coresetPartitions.size() << std::endl;
 }
 
 void Coreset::calculateInitialPartitions(int c)
@@ -209,7 +209,6 @@ void Coreset::calculatePartitions(int maxDepthT, int d, double costFactorF)
 
     for (unsigned int i = 0; i < partitions.size(); i++)
     {
-        std::cout << "Recursively partitioning subset " << i << "/" << partitions.size() << std::endl;
         calculatePartitionsRecursive(partitions[i], depth, maxDepthT, d, costFactorF);
     }
 }
@@ -347,8 +346,6 @@ std::vector<Point*> Coreset::samplePointsByKmeanspp(std::vector<Point*> points, 
     // Choose remaining samples via kmeans++ D^2-sampling
     for (unsigned int i = 1; i < sampleSize; i++)
     {
-        std::cout << "Sample " << i << "/" << sampleSize << std::endl;
-
         // Calculate D^2(x) for all points (and sum thereof)
         std::vector<double> d_squared(numPoints);
         double d_squared_sum = 0;

@@ -39,7 +39,7 @@ int main(int argc, char **argv)
     {
         Coreset coreset(input, k);
         coreset.process();
-        coreset.calculateCoreset(3, 2, 3, 0.05);
+        coreset.calculateCoreset(10, 3, 3, 0.1);
         coreset.writeCoresetToFile(output);
     }
     catch(const std::invalid_argument& ia)
